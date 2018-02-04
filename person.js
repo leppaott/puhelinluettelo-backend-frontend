@@ -1,3 +1,5 @@
+import { callbackify } from 'util';
+
 const mongoose = require('mongoose')
 
 const url = 'mongodb://admin:adminpass123@ds223578.mlab.com:23578/fullstackdb'
@@ -11,8 +13,18 @@ const Person = mongoose.model('Person', {
     id: String
 });
 
-mongoose.model('Person').schema.statics.format = function (person) {
+mongoose.model('Person').schema.statics.format = function (person, cb) {
     const { name, number, id } = person
+    const promise = new mongoose.Promise;
+    if (callback) promise.addBack(callbackify);
+        promise.resolve.bind(promise)(null, {
+            name,
+            number,
+            id
+        })
+
+    return promise
+
     return Promise.resolve({
         name,
         number,
