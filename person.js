@@ -16,7 +16,7 @@ const Person = mongoose.model('Person', {
 mongoose.model('Person').schema.statics.format = function (person, cb) {
     const { name, number, id } = person
     const promise = new mongoose.Promise;
-    if (callback) promise.addBack(callbackify);
+    if (callback) promise.addBack(cb);
         promise.resolve.bind(promise)(null, {
             name,
             number,
