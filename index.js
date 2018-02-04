@@ -45,7 +45,7 @@ let persons = [{
 persons.forEach(p => new Person(p).save())
 
 const formatPerson = (person) => {
-    const { name, number, id } = person
+    const { name, number, _id: id } = person
     return {
         name,
         number,
@@ -106,5 +106,6 @@ app.get('/info', (req, res) => {
         })
 })
 
+//TODO update/put
 
 app.listen(process.env.PORT || 3003)
