@@ -16,11 +16,12 @@ const Person = mongoose.model('Person', {
 mongoose.model('Person').schema.statics.format = function (person, cb) {
     const { name, number, id } = person
 
-    cb({
-        name,
-        number,
-        id
-    })
+    return this.find({}).then(() => {
+        return {
+            name,
+            number,
+            id
+    }})
 }
 
 module.exports = Person
