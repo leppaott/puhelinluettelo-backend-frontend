@@ -11,8 +11,8 @@ const Person = mongoose.model('Person', {
     id: String
 });
 
-mongoose.model('Person').schema.statics.format = function () {
-    const { name, number, id } = this
+mongoose.model('Person').schema.statics.format = function (person) {
+    const { name, number, id } = person
     return Promise.resolve({
         name,
         number,
