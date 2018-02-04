@@ -63,10 +63,16 @@ app.get('/api/persons/:id', (req, res) => {
     })
 })
 
+app.put('/api/persons/:id', (req, res) => {
+    const id = Number(req.params.id)
+    Person.findOneAndUpdate({ id }, req.body)
+        .then(person => res.status(404).end())
+})
+
 app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     Person.findOneAndRemove({ id })
-        .then(person => res.status(204).send({msg: 'deleted'}).end())
+        .then(person => res.status(204).end())
 })
 
 app.post('/api/persons/', (req, res) => {
@@ -105,7 +111,5 @@ app.get('/info', (req, res) => {
             res.send(info)
         })
 })
-
-//TODO update/put
 
 app.listen(process.env.PORT || 3003)
