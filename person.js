@@ -13,22 +13,14 @@ const Person = mongoose.model('Person', {
     id: String
 });
 
-mongoose.model('Person').schema.statics.format = function (person, cb) {
+mongoose.model('Person').schema.statics.format = function (person) {
     const { name, number, id } = person
-    const promise = new mongoose.Promise;
-    if (callback) promise.addBack(cb);
-        promise.resolve.bind(promise)(null, {
+    return mongoose.Promise.then(() => { 
+        return {
             name,
             number,
             id
-        })
-
-    return promise
-
-    return Promise.resolve({
-        name,
-        number,
-        id
+        }
     })
 }
 
