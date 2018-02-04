@@ -21,7 +21,7 @@ app.use(morgan((tokens, req, res) => {
         tokens.res(req, res, 'content-length'), '-',
         tokens['response-time'](req, res), 'ms'
     ].join(' ')
-}))//morgan('tiny')) 
+}))// morgan('tiny')) 
 
 let persons = [{
         name: "Arto Hellas",
