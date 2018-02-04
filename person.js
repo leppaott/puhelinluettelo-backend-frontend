@@ -13,11 +13,11 @@ const Person = mongoose.model('Person', {
 
 mongoose.model('Person').schema.statics.format = function () {
     const { name, number, id } = this
-    return {
+    return Promise.resolve({
         name,
         number,
         id
-    }
+    })
 }
 
 module.exports = Person
