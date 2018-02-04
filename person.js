@@ -11,4 +11,13 @@ const Person = mongoose.model('Person', {
     id: String
 });
 
+mongoose.model('Person').schema.statics.format = (person) => {
+    const { name, number, id } = person
+    return {
+        name,
+        number,
+        id
+    }
+}
+
 module.exports = Person

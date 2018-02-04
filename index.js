@@ -44,19 +44,11 @@ let persons = [{
 
 persons.forEach(p => new Person(p).save())
 
-const formatPerson = (person) => {
-    const { name, number, id } = person
-    return {
-        name,
-        number,
-        id
-    }
-}
 app.get('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     Person.findOne({ id }).then(person => {
         if (person) {
-            res.json(formatPerson(person))
+            res.json(Person.format(person))
         } else {
             res.status(404).end()
         }
@@ -93,13 +85,13 @@ app.post('/api/persons/', (req, res) => {
             if (persons.find(p => p.number === person.number))
                 return error('number has been used')
 
-            person.save().then(saved => res.json(formatPerson(saved)))
+            person.save().then(saved => res.json(Person.format(saved)))
         })
 })
 
 app.get('/api/persons', (req, res) => {
     Person.find({})
-        .then(persons => res.json(persons.map(formatPerson)))
+        .then(persons => res.json(persons.map(Person.format)))
 })
 
 app.get('/info', (req, res) => {
