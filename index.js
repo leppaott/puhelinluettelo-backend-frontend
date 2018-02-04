@@ -45,7 +45,7 @@ let persons = [{
 persons.forEach(p => new Person(p).save())
 
 const formatPerson = (person) => {
-    const { name, number, _id: id } = person
+    const { name, number, id } = person
     return {
         name,
         number,
@@ -54,7 +54,7 @@ const formatPerson = (person) => {
 }
 app.get('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
-    Person.findById(id).then(person => {
+    Person.findOne({ id }).then(person => {
         if (person) {
             res.json(formatPerson(person))
         } else {
