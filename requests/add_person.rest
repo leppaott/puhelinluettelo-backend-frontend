@@ -1,7 +1,0 @@
-POST https://fullstackback.herokuapp.com/
-content-type: application/json
-
-{
-    "name": "yesname",
-    "number": "050-sdsdsd"
-}

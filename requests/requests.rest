@@ -1,0 +1,13 @@
+POST https://fullstackback.herokuapp.com/api/persons
+content-type: application/json
+
+{
+    "name": "asd",
+    "number": "050-343423"
+}
+
+###
+GET https://fullstackback.herokuapp.com/api/persons/2
+
+###
+DELETE https://fullstackback.herokuapp.com/api/persons/3
