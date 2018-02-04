@@ -14,14 +14,12 @@ const Person = mongoose.model('Person', {
 });
 
 mongoose.model('Person').schema.statics.format = function (person) {
-    const { name, number, id } = this
-    return mongoose.Promise.then(() => { 
+    const { name, number, id } = person
         return {
             name,
             number,
             id
         }
-    })
 }
 
 module.exports = Person
