@@ -21,4 +21,6 @@ personSchema.statics.format = function (person) {
     }
 }
 
-module.exports.Person = mongoose.model('Person', personSchema)
+const Person = mongoose.model('Person', personSchema);
+
+module.exports = Person
