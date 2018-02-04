@@ -13,7 +13,7 @@ const Person = mongoose.model('Person', {
     id: String
 });
 
-mongoose.model('Person').schema.statics.format = function (person, cb) {
+mongoose.model('Person').schema.statics.format = function (person) {
     const { name, number, id } = person
 
     return this.findOne({}).then(() => {
