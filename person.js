@@ -13,7 +13,7 @@ const Person = mongoose.model('Person', {
     id: String
 });
 
-mongoose.model('Person').schema.methods.format = function (person) {
+/* mongoose.model('Person').schema.methods.format = function (person) {
     const { name, number, id } = person
 
     return {
@@ -21,6 +21,6 @@ mongoose.model('Person').schema.methods.format = function (person) {
         number,
         id
     }
-}
+} */
 
 module.exports = Person

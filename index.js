@@ -24,22 +24,22 @@ app.use(morgan((tokens, req, res) => {
 }))//morgan('tiny')) 
 
 let persons = [{
-    name: "Arto Hellas",
-    number: "040-123456",
-    id: 1
-}, {
-    name: "Martti Tienari",
-    number: "050-2223456",
-    id: 2
-}, {
-    name: "Arto Järvinen",
-    number: "066-123123",
-    id: 3
-}, {
-    name: "Lea Kutvonen",
-    number: "044-666686",
-    id: 4
-}
+        name: "Arto Hellas",
+        number: "040-123456",
+        id: 1
+    }, {
+        name: "Martti Tienari",
+        number: "050-2223456",
+        id: 2
+    }, {
+        name: "Arto Järvinen",
+        number: "066-123123",
+        id: 3
+    }, {
+        name: "Lea Kutvonen",
+        number: "044-666686",
+        id: 4
+    }
 ]
 
 const format = (person) => {
@@ -88,7 +88,7 @@ app.post('/api/persons/', (req, res) => {
         return error('name missing')
     if (!person.number || !person.number.length)
         return error('number missing')
-    
+
     Person.find({})
         .then(persons => {
             if (persons.find(p => p.number === person.number))
