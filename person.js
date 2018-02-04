@@ -1,5 +1,3 @@
-import { callbackify } from 'util';
-
 const mongoose = require('mongoose')
 
 const url = 'mongodb://admin:adminpass123@ds223578.mlab.com:23578/fullstackdb'
