@@ -13,14 +13,13 @@ const Person = mongoose.model('Person', {
     id: String
 });
 
-mongoose.model('Person').schema.statics.format = function (person) {
+mongoose.model('Person').schema.statics.format = function (person, cb) {
     const { name, number, id } = person
-    return this.exec().then(() => {
-        return {
-            name,
-            number,
-            id
-        }
+
+    return new Person({
+        name,
+        number,
+        id
     })
 }
 
