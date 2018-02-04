@@ -5,13 +5,13 @@ const url = 'mongodb://admin:adminpass123@ds223578.mlab.com:23578/fullstackdb'
 mongoose.connect(url)
 mongoose.Promise = global.Promise;
 
-const Person = mongoose.model('Person', {
+const personSchema = new mongoose.Schema({
     name: String,
     number: String,
     id: String
-});
+})
 
-Person.schema.methods.format = function (person) {
+personSchema.statics.format = function (person) {
     const { name, number, id } = person
 
     return {
@@ -21,4 +21,4 @@ Person.schema.methods.format = function (person) {
     }
 }
 
-module.exports = Person
+module.exports.Person = mongoose.model('Person', personSchema)
