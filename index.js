@@ -78,9 +78,11 @@ app.post('/api/persons/', (req, res) => {
     if (!person.number || !person.number.length)
         return error('number missing')
 
-    Person.find({})
-        .then(persons => {
-            if (persons.find(p => p.number === person.number))
+    Person.findOne().or([{ name: person.name }, { number: person.number}])
+        .then(maybePerson => {
+            if (maybePerson && maybePerson.name == person.name)
+                return error('name has been used')
+            else if (maybePerson && maybePerson.number == person.number)
                 return error('number has been used')
 
             person.save()
