@@ -6,19 +6,19 @@ mongoose.connect(url)
 mongoose.Promise = global.Promise;
 
 const personSchema = new mongoose.Schema({
-    name: String,
-    number: String,
-    id: String
+  name: String,
+  number: String,
+  id: String
 })
 
 personSchema.statics.format = function (person) {
-    const { name, number, id } = person
+  const { name, number, id } = person
 
-    return {
-        name,
-        number,
-        id
-    }
+  return {
+    name,
+    number,
+    id
+  }
 }
 
 module.exports = mongoose.model('Person', personSchema)
