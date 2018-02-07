@@ -46,25 +46,23 @@ persons.forEach(p => new Person(p).save())
 
 app.get('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
-    Person.findOne({ id }).then(person => {
-        if (person) {
-            res.json(Person.format(person))
-        } else {
-            res.status(404).end()
-        }
-    })
+    Person.findOne({ id })
+        .then(person => res.json(Person.format(person)))
+        .catch(() => res.status(404).end())
 })
 
 app.put('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     Person.findOneAndUpdate({ id }, req.body)
-        .then(person => res.status(204).end())
+        .then(person => res.json(Person.format(person)))
+        .catch(() => res.status(404).end())
 })
 
 app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     Person.findOneAndRemove({ id })
-        .then(person => res.status(204).end())
+        .then(person => res.json(Person.format(person)))
+        .catch(() => res.status(404).end())
 })
 
 app.post('/api/persons/', (req, res) => {
@@ -85,13 +83,16 @@ app.post('/api/persons/', (req, res) => {
             if (persons.find(p => p.number === person.number))
                 return error('number has been used')
 
-            person.save().then(saved => res.json(Person.format(saved)))
+            person.save()
+                .then(saved => res.json(Person.format(saved)))
+                .catch(() => res.status(404).end())
         })
 })
 
 app.get('/api/persons', (req, res) => {
     Person.find({})
         .then(persons => res.json(persons.map(Person.format)))
+        .catch(() => res.status(404).end())
 })
 
 app.get('/info', (req, res) => {
